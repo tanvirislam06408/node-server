@@ -4,6 +4,7 @@ const cors = require('cors');
 const port = process.env.PORT || 5000
 
 app.use(cors());
+app.use(express.json());
 
 const users = [
     {
@@ -45,7 +46,12 @@ app.get('/user', (req, res) => {
 
 
 app.post('/user', (req, res) => {
-    res.send({ success: true, message: 'post method' })
+    const newUser=req.body;
+    newUser.id=users.length+1;
+    users.push(newUser);
+    console.log('data from server',req.body);
+    
+    res.send({ success: true,data:newUser, message: 'user created successfully' })
 })
 
 
