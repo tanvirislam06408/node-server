@@ -1,49 +1,55 @@
 const express = require('express')
 const app = express()
-
+const cors = require('cors');
 const port = process.env.PORT || 5000
 
-
+app.use(cors());
 
 const users = [
-  {
-    id: 1,
-    name: "Alice Johnson",
-    email: "alice@example.com",
-    age: 28,
-    isActive: true,
-    role: "admin",
-    createdAt: "2024-01-15"
-  },
-  {
-    id: 2,
-    name: "Bob Smith",
-    email: "bob@example.com",
-    age: 34,
-    isActive: true,
-    role: "editor",
-    createdAt: "2024-02-20"
-  },
-  {
-    id: 3,
-    name: "Charlie Brown",
-    email: "charlie@example.com",
-    age: 22,
-    isActive: false,
-    role: "viewer",
-    createdAt: "2024-03-10"
-  }
+    {
+        id: 1,
+        name: "Alice Johnson",
+        email: "alice@example.com",
+        age: 28,
+        isActive: true,
+        role: "admin",
+        createdAt: "2024-01-15"
+    },
+    {
+        id: 2,
+        name: "Bob Smith",
+        email: "bob@example.com",
+        age: 34,
+        isActive: true,
+        role: "editor",
+        createdAt: "2024-02-20"
+    },
+    {
+        id: 3,
+        name: "Charlie Brown",
+        email: "charlie@example.com",
+        age: 22,
+        isActive: false,
+        role: "viewer",
+        createdAt: "2024-03-10"
+    }
 ];
 
-app.get('/',(req,res)=>{
+app.get('/', (req, res) => {
     res.send('hello from server')
 })
-app.get('/user',(req,res)=>{
+app.get('/user', (req, res) => {
     res.send(users)
 })
 
 
-app.listen(port,()=>{
+
+app.post('/user', (req, res) => {
+    res.send({ success: true, message: 'post method' })
+})
+
+
+app.listen(port, () => {
     console.log('server is running');
-    
+
 })
